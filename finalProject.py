@@ -1,5 +1,16 @@
 from flask import Flask, render_template, request
 
+app = Flask(__name__)
+
+#Global Variables that define how many rows and columns there are
+ROWS = 12
+COLUMNS = 4
+
+#Seat chart that uses the global variables
+seat_chart = [[0 for col in range(COLUMNS)] for row in range(ROWS)]
+#cost matrix 
+cost_matrix = [[100, 75, 50, 100] for row in range(ROWS)]
+
 #renders our index.html page
 @app.route("/")
 def index():
