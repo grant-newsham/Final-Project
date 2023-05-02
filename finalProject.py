@@ -10,7 +10,38 @@ COLUMNS = 4
 seat_chart = [[0 for col in range(COLUMNS)] for row in range(ROWS)]
 #cost matrix 
 cost_matrix = [[100, 75, 50, 100] for row in range(ROWS)]
+#create an empty reservations dictionary
+reservations = {}
+#open and read from reservations.txt
+with open("reservations.txt", "r") as f:
+    for line in f:
+        data = line.strip().split(", ")
+        if len(data) >= 4:
+            reservations[(int(data[1]), int(data[2]))] = {"name": data[0], "ticket_number": data[3]}
+        else:
+            print(f"Error: Invalid line in reservations file: {line}")
+admin_users = {}
+#open and read from passcodes.txt
+with open("passcodes.txt", "r") as f:
+    for line in f:
+        data = line.strip().split(", ")
+        admin_users[data[0]] = data[1]
 
+#writes into reservations.txt once the user reserves a seat
+def save_reservation(first_name, row, col, confirmation):
+    with open("reservations.txt", "a") as f:
+        f.write(f"{first_name}, {row}, {col}, {confirmation}\n")
+        reservations[(row, col)] = {"name": first_name, "ticket_number": confirmation}
+
+#generates the confimation number that is written into reservations.txt
+def reservation_confirmation(first_name):
+    name = first_name
+    class_code = "INFOTC4320"
+    confirmation = ""
+    for i in range(len(name)):
+        confirmation += name[i] + class_code[i]
+    confirmation += class_code[len(name):]
+    return confirmation
 #renders our index.html page
 @app.route("/")
 def index():
