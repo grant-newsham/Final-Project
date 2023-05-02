@@ -41,7 +41,25 @@ def reservation_confirmation(first_name):
     for i in range(len(name)):
         confirmation += name[i] + class_code[i]
     confirmation += class_code[len(name):]
-    return confirmation
+    
+   return confirmation
+
+#reads from reservations.txt and calculates the total sales based on the cost_matrix
+def calculate_sales():
+    sales = 0
+    with open("reservations.txt", "r") as f:
+        for line in f:
+            data = line.strip().split(", ")
+            if len(data) >= 4:
+                row = int(data[1])
+                col = int(data[2])
+                if (row, col) in reservations:
+                    seat_cost = cost_matrix[row][col]
+                    sales += seat_cost
+            else:
+                print(f"Error: Invalid line in reservations file: {line}")
+    return sales
+
 #renders our index.html page
 @app.route("/")
 def index():
