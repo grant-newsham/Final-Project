@@ -20,3 +20,27 @@ def admin_login():
             return render_template("admin_login.html", error=True)
     else:
         return render_template("admin_login.html", error=False)
+    
+    #renders the seat reservation page
+@app.route('/reserve_seat', methods=['GET', 'POST'])
+def reserve_seat():
+
+    if request.method == 'POST':
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        row = int(request.form['row'])
+        col = int(request.form['col'])
+        #checks to see if the reservation was successful 
+        if seat_chart[row][col] == 0:
+            confirmation = reservation_confirmation(first_name)
+            seat_chart[row][col] = 1
+            save_reservation(first_name, row, col, confirmation)
+            return render_template('reservation_success.html', first_name=first_name, last_name=last_name, row=row, col=col, confirmation=confirmation)
+        #renders the reservation error page if the seat is already taken 
+        else:
+            return render_template('reservation_error.html')
+    else:
+        with open("reservations.txt", "r"):
+                return render_template("reserve_seat.html", reservations=reservations, ROWS=ROWS, COLUMNS=COLUMNS)
+
+app.run(debug=True)
