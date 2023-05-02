@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Reserve a Seat</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/styles/myCSS.css">
+  </head>
+  <body>
+    <h1>Reserve Your Seat</h1>
+    <form method="POST">
+      <table>
+        {% for row in range(ROWS) %}
+        <tr>
+            {% for col in range(COLUMNS) %}
+                {% if (row, col) in reservations %}
+                    <td style="background-color:rgb(255, 255, 255);">X</td>
+                {% else %}
+                    <td style="background-color:rgb(255, 255, 255);">O</td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+      <label for="first_name">First Name:</label>
+      <input type="text" id="first_name" name="first_name" required><br><br>
+      <label for="last_name">Last Name:</label>
+      <input type="text" id="last_name" name="last_name" required><br><br>
+      <label for="row">Row:</label>
+      <select id="ROWS" name="row">
+        <option value="0">1</option>
+        <option value="1">2</option>
+        <option value="2">3</option>
+        <option value="3">4</option>
+        <option value="4">5</option>
+        <option value="5">6</option>
+        <option value="6">7</option>
+        <option value="7">8</option>
+        <option value="8">9</option>
+        <option value="9">10</option>
+        <option value="10">11</option>
+        <option value="11">12</option>
+      </select>
+      <label for="COLUMNS">Column:</label>
+      <select id="COLUMNS" name="col">
+        <option value="0">1</option>
+        <option value="1">2</option>
+        <option value="2">3</option>
+        <option value="3">4</option>
+      </select>
+      <input type="submit" value="Reserve">
+    </form>
+    <br>
+    <a href="/">Back to Main Menu</a>
+    
+    
+  </body>
+</html>
