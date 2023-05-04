@@ -1,0 +1,9 @@
+body{
+    text-align: center;
+    background-color: bisque;
+}
+
+tr, table{
+    margin-left: auto;
+    margin-right: auto;
+}
