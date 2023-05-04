@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Reservation Confirmation</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/styles/myCSS.css">
+  </head>
+  <body>
+    <h1>Reservation Success</h1>
+    <p>Your reservation has been confirmed. Here are the details:</p>
+    <p>Name: {{ first_name }} {{ last_name }}</p>
+    <p>Seat: Row {{ row }}, Column {{ col }}</p>
+    <p>Confirmation: {{ confirmation }}</p>
+    <br>
+    <a href="/">Back to Main Menu</a>
+
+  </body>
+</html>
