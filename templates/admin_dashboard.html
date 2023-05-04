@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/styles/myCSS.css">
+  </head>
+  <body>
+    <h1>Admin</h1>
+    <p>Total Sales: ${{ total_sales }}</p>
+    <table>
+        {% for row in range(ROWS) %}
+        <tr>
+            {% for col in range(COLUMNS) %}
+                {% if (row, col) in reservations %}
+                    <td style="background-color:rgb(255, 255, 255);">X</td>
+                {% else %}
+                    <td style="background-color:rgb(255, 255, 255);">O</td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/">Logout</a>
+  </body>
+</html>
