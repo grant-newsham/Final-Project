@@ -42,7 +42,7 @@ def reservation_confirmation(first_name):
         confirmation += name[i] + class_code[i]
     confirmation += class_code[len(name):]
     
-   return confirmation
+    return confirmation
 
 #reads from reservations.txt and calculates the total sales based on the cost_matrix
 def calculate_sales():
